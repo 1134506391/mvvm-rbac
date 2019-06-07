@@ -1,6 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
-import { routes, newAddRoutes, doFilter } from '@/router/router'
+import { newAddRoutes, doFilter } from '@/router/router'
 const state = {
   router: JSON.parse(sessionStorage.getItem('router')),
   hasGetRules: false
@@ -20,34 +20,13 @@ const mutations = {
 }
 
 const actions = {
-  // addRouter ({ commit }) {
-  //   return new Promise((resolve, reject) => {
-  //     axios
-  //       .get('/api/permission')
-  //       .then(res => {
-  //         console.log('res.data.data')
-  //         console.log(res.data.data)
-  //         let rules = res.data.data
-  //         let newRouter = doFilter(newAddRoutes, rules)
-  //         // console.log('newRouter')
-  //         // console.log(JSON.stringify(newRouter))
-  //         // let newRouter2 = newRouter.concat(routes)
-  //         // console.log(JSON.stringify(newRouter2))
-  //         commit('SET_ROUTER', newRouter)
-  //         resolve(newRouter)
-  //       })
-  //       .catch(err => {
-  //         reject(err)
-  //       })
-  //   })
-  // },
   addRouter ({ commit }) {
+    let userId = store.state.adminUser.adminUser.id
     return new Promise((resolve, reject) => {
       axios
         .get('/api/rolePermission', {
           params: {
-            // userId: store.state.adminUser.id
-            userId: 5
+            userId
           }
         })
         .then(res => {
@@ -55,10 +34,6 @@ const actions = {
           console.log(res.data.data)
           let rules = res.data.data
           let newRouter = doFilter(newAddRoutes, rules)
-          // console.log('newRouter')
-          // console.log(JSON.stringify(newRouter))
-          // let newRouter2 = newRouter.concat(routes)
-          // console.log(JSON.stringify(newRouter2))
           commit('SET_ROUTER', newRouter)
           resolve(newRouter)
         })

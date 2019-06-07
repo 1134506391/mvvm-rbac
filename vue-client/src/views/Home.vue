@@ -23,60 +23,16 @@
           </ul>
         </li>
       </ul>
-      <!-- <ul>
-        <li>
-          <div>
-            <ul>
-              <router-link to="/">首页</router-link>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <div>
-            角色管理
-          </div>
-          <ul>
-            <li>
-              <router-link to="/role/create">创建角色</router-link>
-            </li>
-            <li>
-              <router-link to="/role/list">角色列表</router-link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <div>
-            管理员管理
-          </div>
-          <ul>
-            <li>
-              <router-link to="/adminUser/create">创建管理员</router-link>
-            </li>
-            <li>
-              <router-link to="/adminUser/list">管理员列表</router-link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <div>
-            路由权限管理
-          </div>
-          <ul>
-            <li>
-              <router-link to="/permission/create">创建路由权限</router-link>
-            </li>
-            <li>
-              <router-link to="/permission/list">路由权限列表</router-link>
-            </li>
-          </ul>
-        </li>
-      </ul> -->
     </nav>
     <header class="layout-header">
-      <div class="header-left">
-        {{$route.meta.title}}
-      </div>
-      <div class="header-right">
+      <ul class="header-left">
+        <li v-for="(item,index) in $route.meta.breadCrumb"
+            :key="item.id">
+          <router-link :to="item.path">{{item.title}} <span v-if="index !== $route.meta.breadCrumb.length-1">/</span> </router-link>
+        </li>
+      </ul>
+      <div class="
+                  header-right">
         <img :src="BASEURL + adminUser.avatar"
              alt="">
         <span>{{adminUser.username}}</span>
@@ -181,6 +137,18 @@ export default {
     margin-left: 200px;
     padding: 0 10px;
     border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    .header-left {
+      display: flex;
+      li {
+        margin-right: 5px;
+        &:hover {
+          a {
+            color: #00aaee;
+          }
+        }
+      }
+    }
     .header-right {
       flex: 0 0 200px;
       width: 200px;

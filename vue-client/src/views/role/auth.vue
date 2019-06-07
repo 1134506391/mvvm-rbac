@@ -114,6 +114,13 @@ export default {
         })
         .then(res => {
           console.log(res)
+          this.$Alert.info({
+            content: '授权成功,返回角色列表',
+            duration: 1.5
+          })
+          this.$router.push({
+            path: '/role/list'
+          })
         })
         .catch(err => {
           console.log(err)

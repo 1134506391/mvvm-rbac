@@ -34,7 +34,17 @@ export const newAddRoutes = [
         name: 'role',
         meta: {
           title: '角色',
-          type: 2
+          type: 2,
+          breadCrumb: [
+            {
+              title: '首页',
+              path: '/'
+            },
+            {
+              title: '角色',
+              path: '/role'
+            }
+          ]
         },
         component: () => import('@/views/role/index.vue'),
         redirect: '/role/list',
@@ -44,7 +54,21 @@ export const newAddRoutes = [
             name: 'roleCreate',
             meta: {
               title: '创建角色',
-              type: 2
+              type: 2,
+              breadCrumb: [
+                {
+                  title: '首页',
+                  path: '/'
+                },
+                {
+                  title: '角色',
+                  path: '/role'
+                },
+                {
+                  title: '创建角色',
+                  path: '/role/create'
+                }
+              ]
             },
             component: () => import('@/views/role/create.vue')
           },
@@ -53,7 +77,21 @@ export const newAddRoutes = [
             name: 'roleList',
             meta: {
               title: '角色列表',
-              type: 2
+              type: 2,
+              breadCrumb: [
+                {
+                  title: '首页',
+                  path: '/'
+                },
+                {
+                  title: '角色',
+                  path: '/role'
+                },
+                {
+                  title: '角色列表',
+                  path: '/role/list'
+                }
+              ]
             },
             component: () => import('@/views/role/list.vue')
           },
@@ -62,7 +100,21 @@ export const newAddRoutes = [
             name: 'roleUpdate',
             meta: {
               title: '修改角色',
-              type: 3
+              type: 3,
+              breadCrumb: [
+                {
+                  title: '首页',
+                  path: '/'
+                },
+                {
+                  title: '角色',
+                  path: '/role'
+                },
+                {
+                  title: '修改角色',
+                  path: '/role/update'
+                }
+              ]
             },
             component: () => import('@/views/role/update.vue')
           },
@@ -71,7 +123,21 @@ export const newAddRoutes = [
             name: 'roleAuth',
             meta: {
               title: '角色授权',
-              type: 2
+              type: 2,
+              breadCrumb: [
+                {
+                  title: '首页',
+                  path: '/'
+                },
+                {
+                  title: '角色',
+                  path: '/role'
+                },
+                {
+                  title: '角色授权',
+                  path: '/role/auth'
+                }
+              ]
             },
             component: () => import('@/views/role/auth.vue')
           }
@@ -85,13 +151,28 @@ export const newAddRoutes = [
           type: 2
         },
         component: () => import('@/views/adminUser/index.vue'),
+        redirect: '/adminUser/list',
         children: [
           {
             path: '/adminUser/create',
             name: 'adminUserCreate',
             meta: {
               title: '创建管理员',
-              type: 2
+              type: 2,
+              breadCrumb: [
+                {
+                  title: '首页',
+                  path: '/'
+                },
+                {
+                  title: '管理员',
+                  path: '/adminUser'
+                },
+                {
+                  title: '创建管理员',
+                  path: '/adminUser/create'
+                }
+              ]
             },
             component: () => import('@/views/adminUser/create.vue')
           },
@@ -100,7 +181,21 @@ export const newAddRoutes = [
             name: 'adminUserList',
             meta: {
               title: '管理员列表',
-              type: 2
+              type: 2,
+              breadCrumb: [
+                {
+                  title: '首页',
+                  path: '/'
+                },
+                {
+                  title: '管理员',
+                  path: '/adminUser'
+                },
+                {
+                  title: '管理员列表',
+                  path: '/adminUser/list'
+                }
+              ]
             },
             component: () => import('@/views/adminUser/list.vue')
           },
@@ -109,7 +204,21 @@ export const newAddRoutes = [
             name: 'adminUserUpdate',
             meta: {
               title: '修改管理员',
-              type: 3
+              type: 3,
+              breadCrumb: [
+                {
+                  title: '首页',
+                  path: '/'
+                },
+                {
+                  title: '管理员',
+                  path: '/adminUser'
+                },
+                {
+                  title: '修改管理员',
+                  path: '/adminUser/update'
+                }
+              ]
             },
             component: () => import('@/views/adminUser/update.vue')
           }
@@ -123,13 +232,28 @@ export const newAddRoutes = [
           type: 2
         },
         component: () => import('@/views/permission/index.vue'),
+        redirect: '/permission/list',
         children: [
           {
             path: '/permission/create',
             name: 'permissionCreate',
             meta: {
               title: '创建路由权限',
-              type: 2
+              type: 2,
+              breadCrumb: [
+                {
+                  title: '首页',
+                  path: '/'
+                },
+                {
+                  title: '路由权限',
+                  path: '/permission'
+                },
+                {
+                  title: '修改管理员',
+                  path: '/permission/create'
+                }
+              ]
             },
             component: () => import('@/views/permission/create.vue')
           },
@@ -138,7 +262,21 @@ export const newAddRoutes = [
             name: 'permissionList',
             meta: {
               title: '路由权限列表',
-              type: 2
+              type: 2,
+              breadCrumb: [
+                {
+                  title: '首页',
+                  path: '/'
+                },
+                {
+                  title: '路由权限',
+                  path: '/permission'
+                },
+                {
+                  title: '路由权限列表',
+                  path: '/permission/list'
+                }
+              ]
             },
             component: () => import('@/views/permission/list.vue')
           },
@@ -147,7 +285,21 @@ export const newAddRoutes = [
             name: 'permissionUpdate',
             meta: {
               title: '修改路由权限',
-              type: 3
+              type: 3,
+              breadCrumb: [
+                {
+                  title: '首页',
+                  path: '/'
+                },
+                {
+                  title: '路由权限',
+                  path: '/permission'
+                },
+                {
+                  title: '修改路由权限',
+                  path: '/permission/update'
+                }
+              ]
             },
             component: () => import('@/views/permission/update.vue')
           }
