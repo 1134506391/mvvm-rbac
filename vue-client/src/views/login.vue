@@ -17,7 +17,7 @@
         <button class="info"
                 @click="loginAction()">登录</button>
         <button class="app-btn-blue"
-                @click="loginAction()">注册</button>
+                @click="openRegister()">注册</button>
       </label>
 
     </div>
@@ -55,8 +55,12 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    openRegister () {
+      this.$router.push({
+        path: '/register'
+      })
     }
-
   }
 }
 </script>

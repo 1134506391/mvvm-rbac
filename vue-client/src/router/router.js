@@ -1,5 +1,6 @@
 // 默认路由
 export const routes = [
+  // addRoutes之后还有
   {
     path: '/login',
     name: 'login',
@@ -7,6 +8,14 @@ export const routes = [
       title: '登录'
     },
     component: () => import('@/views/login.vue')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    meta: {
+      title: '注册'
+    },
+    component: () => import('@/views/register.vue')
   }
   // {
   //   path: '*',
