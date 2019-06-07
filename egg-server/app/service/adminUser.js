@@ -3,10 +3,17 @@
 const Service = require('egg').Service;
 
 class AdminUserService extends Service {
-  async findAll() {
+  async findAll(query) {
     const { ctx } = this;
     try {
-      const result = await ctx.model.AdminUser.findAll({
+      // page第几页
+      // limit 第页多少条
+      // offset 跳过多少页面
+      const limit = ctx.helper.parseInt(query.limit) || 2;
+      const offset = ctx.helper.parseInt(query.page - 1) * limit;
+      const result = await ctx.model.AdminUser.findAndCountAll({
+        offset,
+        limit,
         include: [
           {
             model: this.ctx.model.Role,

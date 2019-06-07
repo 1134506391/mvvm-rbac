@@ -35,6 +35,13 @@
         </tr>
       </tbody>
     </table>
+    <div class="app-page">
+      <button @click="prevPage">上一页</button>
+      <span>总页数{{pages}}/</span>
+      <span>总条数{{count}}/</span>
+      <span>当前第{{page}}页/</span>
+      <button @click="nextPage">下一页</button>
+    </div>
   </div>
 </template>
 
@@ -42,16 +49,29 @@
 export default {
   data () {
     return {
-      data: ''
+      data: '',
+      limit: 3, // 一页多少条,要请求的
+      page: 1, // 第几页,要请求的
+      pages: 0, // 总页数,返回来的
+      count: 0 // 总条数,返回来的
     }
   },
   methods: {
     getData () {
+      let params = {}
+      if (this.limit) {
+        params.limit = this.limit
+      }
+      if (this.page) {
+        params.page = this.page
+      }
       this.$axios
-        .get('http://localhost:7001/api/adminUser')
+        .get('http://localhost:7001/api/adminUser', { params })
         .then(res => {
           console.log(res.data)
-          this.data = res.data.data
+          this.data = res.data.data.rows
+          this.count = res.data.data.count
+          this.pages = Math.ceil(this.count / this.limit)
         })
         .catch(err => {
           console.log(err)
@@ -75,6 +95,22 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    prevPage () {
+      this.page--
+      if (this.page < 1) {
+        this.page = 1
+        return
+      }
+      this.getData()
+    },
+    nextPage () {
+      this.page++
+      if (this.page > this.pages) {
+        this.page = this.pages
+        return
+      }
+      this.getData()
     }
   },
   created () {
