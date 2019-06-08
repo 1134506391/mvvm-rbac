@@ -33,18 +33,28 @@
         </ul>
       </li>
       <button @click="postData">确定</button>
-      <!-- {{data}} -->
+      <!-- {{data}}
+      <hr />
+      {{checkData}}
+      {{checkData.length}} -->
     </ul>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
       data: '',
+      checkData: '',
       roleId: ''
     }
+  },
+  computed: {
+    ...mapState({
+      adminUser: state => state.adminUser.adminUser
+    })
   },
   methods: {
     byStatusAddCheck (arr) {
@@ -75,12 +85,60 @@ export default {
       })
       return arr
     },
-    getData () {
+    getData (checkData) {
       this.$axios
         .get('http://localhost:7001/api/permission')
         .then(res => {
           console.log(res.data)
-          this.data = this.byStatusAddCheck(res.data.data)
+          this.data = res.data.data
+          // this.data = this.byStatusAddCheck(res.data.data)
+          checkData.forEach(someItem => {
+            this.data.forEach(allItem1 => {
+              if (someItem.id === allItem1.id) {
+                allItem1.check = true
+              }
+              allItem1.children.forEach(allItem2 => {
+                if (someItem.id === allItem2.id) {
+                  allItem2.check = true
+                }
+                allItem2.children.forEach(allItem3 => {
+                  if (someItem.id === allItem3.id) {
+                    allItem3.check = true
+                  }
+                })
+              })
+            })
+          })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    getCheckData () {
+      this.$axios
+        .get('http://localhost:7001/api/rolePermission', {
+          params: {
+            userId: this.adminUser.id
+          }
+        })
+        .then(res => {
+          console.log(res.data)
+          let newArr = []
+          var i = 0
+          function toArr (data) {
+            data.forEach((item, index) => {
+              newArr[i] = {
+                id: item.id
+              }
+              i++
+              if (item.children) {
+                toArr(item.children)
+              }
+            })
+            return newArr
+          }
+          this.checkData = toArr(res.data.data)
+          this.getData(this.checkData)
         })
         .catch(err => {
           console.log(err)
@@ -135,7 +193,8 @@ export default {
   },
   created () {
     this.roleId = this.$route.query.id
-    this.getData()
+    // this.getData()
+    this.getCheckData()
   }
 }
 </script>
