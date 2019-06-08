@@ -30,8 +30,8 @@ const actions = {
           }
         })
         .then(res => {
-          console.log('res.data.data')
-          console.log(res.data.data)
+          // console.log('res.data.data')
+          // console.log(res.data.data)
           let rules = res.data.data
           let newRouter = doFilter(newAddRoutes, rules)
           commit('SET_ROUTER', newRouter)

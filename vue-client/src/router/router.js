@@ -132,7 +132,7 @@ export const newAddRoutes = [
             name: 'roleAuth',
             meta: {
               title: '角色授权',
-              type: 2,
+              type: 3,
               breadCrumb: [
                 {
                   title: '首页',
