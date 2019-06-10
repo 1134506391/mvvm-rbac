@@ -27,7 +27,8 @@
           <td>{{item.createdAt}}</td>
           <td>{{item.updatedAt}}</td>
           <td>
-            <button @click="updateItem(item.id)"
+            <button v-if="hasPermission('adminUserUpdate')"
+                    @click="updateItem(item.id)"
                     class="warning">编辑</button>
             <button @click="delItem(item.id)"
                     class="dialog">删除</button>
@@ -46,6 +47,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -53,10 +55,34 @@ export default {
       limit: 3, // 一页多少条,要请求的
       page: 1, // 第几页,要请求的
       pages: 0, // 总页数,返回来的
-      count: 0 // 总条数,返回来的
+      count: 0, // 总条数,返回来的
+      permissionArr: ''
     }
   },
+  computed: {
+    ...mapState({
+      router: state => state.router.router
+    })
+  },
   methods: {
+    hasPermission (item) {
+      return this.permissionArr.includes(item)
+    },
+    permissionArrFn () {
+      let newArr = []
+      var i = 0
+      function toArr (data) {
+        data.forEach((item, index) => {
+          newArr[i] = item.name
+          i++
+          if (item.children) {
+            toArr(item.children)
+          }
+        })
+        return newArr
+      }
+      this.permissionArr = toArr(this.router)
+    },
     getData () {
       let params = {}
       if (this.limit) {
@@ -115,6 +141,7 @@ export default {
   },
   created () {
     this.getData()
+    this.permissionArrFn()
   }
 }
 </script>
