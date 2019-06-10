@@ -13,6 +13,19 @@
       </label>
       <label>
         <span>路由名</span>
+
+        <p><input type="radio"
+                 value="1"
+                 v-model="type">模块</p>
+        <p><input type="radio"
+                 value="2"
+                 v-model="type">菜单</p>
+        <p><input type="radio"
+                 value="3"
+                 v-model="type">操作</p>
+      </label>
+      <label>
+        <span>路由名</span>
         <input type="text"
                v-model="name">
       </label>
@@ -36,7 +49,8 @@ export default {
       permissionId: '',
       permissionData: '',
       name: '',
-      title: ''
+      title: '',
+      type: 1
     }
   },
   methods: {
@@ -45,7 +59,8 @@ export default {
         .post('http://localhost:7001/api/permission', {
           permissionId: this.permissionId,
           name: this.name,
-          title: this.title
+          title: this.title,
+          type: this.type
         })
         .then(res => {
           console.log(res.data)

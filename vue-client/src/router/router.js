@@ -128,6 +128,14 @@ export const newAddRoutes = [
             component: () => import('@/views/role/update.vue')
           },
           {
+            path: '/role/delete',
+            name: 'roleDelete',
+            meta: {
+              title: '角色删除',
+              type: 3
+            }
+          },
+          {
             path: '/role/auth',
             name: 'roleAuth',
             meta: {
@@ -230,6 +238,14 @@ export const newAddRoutes = [
               ]
             },
             component: () => import('@/views/adminUser/update.vue')
+          },
+          {
+            path: '/adminUser/delete',
+            name: 'adminUserDelete',
+            meta: {
+              title: '管理员删除',
+              type: 3
+            }
           }
         ]
       },
@@ -311,6 +327,14 @@ export const newAddRoutes = [
               ]
             },
             component: () => import('@/views/permission/update.vue')
+          },
+          {
+            path: '/permission/delete',
+            name: 'permissionDelete',
+            meta: {
+              title: '路由权限删除',
+              type: 3
+            }
           }
         ]
       }

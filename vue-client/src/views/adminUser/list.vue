@@ -30,7 +30,8 @@
             <button v-if="hasPermission('adminUserUpdate')"
                     @click="updateItem(item.id)"
                     class="warning">编辑</button>
-            <button @click="delItem(item.id)"
+            <button v-if="hasPermission('adminUserDelete')"
+                    @click="delItem(item.id)"
                     class="dialog">删除</button>
           </td>
         </tr>

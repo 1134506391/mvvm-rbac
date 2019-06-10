@@ -2,8 +2,12 @@ import axios from 'axios'
 import store from '@/store'
 import { newAddRoutes, doFilter } from '@/router/router'
 const state = {
+  // 路由
   router: JSON.parse(sessionStorage.getItem('router')),
-  hasGetRules: false
+  // 是否加载过路由
+  hasGetRules: false,
+  // 判断按钮权限
+  permissionArr: JSON.parse(sessionStorage.getItem('permissionArr'))
 }
 
 const getters = {}
@@ -16,6 +20,10 @@ const mutations = {
   },
   SET_HASGETRULES (state, params) {
     state.hasGetRules = params
+  },
+  SET_PERMISSION (state, params) {
+    state.permissionArr = params
+    sessionStorage.setItem('permissionArr', JSON.stringify(state.permissionArr))
   }
 }
 
