@@ -116,9 +116,14 @@ export default {
     },
     getCheckData () {
       this.$axios
-        .get('http://localhost:7001/api/rolePermission', {
+        // .get('http://localhost:7001/api/rolePermission', {
+        //   params: {
+        //     userId: this.adminUser.id
+        //   }
+        // })
+        .get('http://localhost:7001/api/roleAuth', {
           params: {
-            userId: this.adminUser.id
+            roleId: this.roleId
           }
         })
         .then(res => {

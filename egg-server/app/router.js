@@ -25,6 +25,7 @@ module.exports = app => {
   router.delete('/api/role/:id', controller.admin.role.destroy);
   router.put('/api/role', controller.admin.role.update);
   router.post('/api/auth', controller.admin.role.auth);
+  router.get('/api/roleAuth', controller.admin.role.roleAuth);
   // 管理员
   router.get('/api/adminUser', controller.admin.adminUser.findAll);
   router.get('/api/adminUser/:id', controller.admin.adminUser.findOne);

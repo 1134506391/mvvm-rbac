@@ -39,6 +39,14 @@ class RoleController extends Controller {
     const result = await ctx.service.role.auth(body);
     ctx.body = result;
   }
+  async roleAuth() {
+    const { ctx } = this;
+    const roleId = ctx.helper.parseInt(ctx.query.roleId);
+    console.log('roleIdroleId');
+    console.log(roleId);
+    const result = await ctx.service.role.roleAuth(roleId);
+    ctx.body = result;
+  }
 }
 
 module.exports = RoleController;
