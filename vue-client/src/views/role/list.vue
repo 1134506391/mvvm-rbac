@@ -8,7 +8,7 @@
           <th>描述</th>
           <th>创建时间</th>
           <th>最后修改时间</th>
-          <th>操作</th>
+          <th v-if="adminUser.username=== 'admin'">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -19,9 +19,8 @@
           <td>{{item.description}}</td>
           <td>{{item.createdAt}}</td>
           <td>{{item.updatedAt}}</td>
-          <td>
-            <button v-if="adminUser.username=== 'admin'"
-                    @click="openAuth(item.id)"
+          <td v-if="adminUser.username=== 'admin'">
+            <button @click="openAuth(item.id)"
                     class="info">授权</button>
             <button @click="updateItem(item.id)"
                     class="warning">编辑</button>

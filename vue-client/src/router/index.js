@@ -16,6 +16,14 @@ router.beforeEach((to, from, next) => {
       store
         .dispatch('router/addRouter')
         .then(res => {
+          res.push({
+            path: '*',
+            name: '404',
+            meta: {
+              title: '404'
+            },
+            component: () => import('@/views/404.vue')
+          })
           router.addRoutes(res)
           next({ ...to })
         })

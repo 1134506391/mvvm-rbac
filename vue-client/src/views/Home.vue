@@ -40,8 +40,11 @@
       </div>
     </header>
     <main class="layout-main">
+
       <router-view></router-view>
       <!-- {{router}} -->
+      <!-- ///
+      {{this.$router.options.routes}} -->
     </main>
 
   </div>
